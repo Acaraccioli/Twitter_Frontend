@@ -1,4 +1,24 @@
-.App {
+.App-header {
+  text-align: center;
+  height: 150px;
+  padding: 20px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.tile {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  background: lightyellow;
+  float: left;
+  font-size: 11px;
+  text-align: left;
+}
+
+/*.App {
   text-align: center;
 }
 
@@ -26,3 +46,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+*/
