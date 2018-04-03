@@ -15,20 +15,41 @@ class TweetForm extends Component {
   this.setState({[e.target.name]: e.target.value})
 }
 
+handleBlur = () => {
+  const tweet = {
+    body: this.state.body,
+    user: this.state.user
+
+  }
+
+  axios.put(
+    `http://localhost:3001/api/v1/tweets/${this.props.tweet.id}`,
+    {
+      tweet: tweet
+    })
+  .then(response => {
+    console.log(response)
+    this.props.updateTweet(response.data)
+
+  })
+  .catch(error => console.log(error))
+}
+
+
   render() {
     return (
       <div className="tile">
-       <form>
+    <form onBlur={this.handleBlur} >
   
-    <textarea className='input' name="body"
+    <textarea className="input" name="body"
     placeholder='Insert your tweet'
     value={this.state.body} onChange={this.handleInput}>
     </textarea>
 
-    <textarea className='input' name="user"
-    placeholder='Insert your username'
-    value={this.state.user} onChange={this.handleInput}>
-    </textarea>
+
+    <input className="input" type="text" name="user" placeholder="user"
+    value={this.state.user}
+    onChange={this.handleInput}/>
     </form>
       </div>
     );

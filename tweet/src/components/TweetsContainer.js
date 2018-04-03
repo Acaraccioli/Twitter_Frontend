@@ -18,6 +18,9 @@ class TweetsContainer extends Component {
     editingTweetId:null
   }
 }
+
+
+
 addNewTweet = () => {
   axios.post(
     'http://localhost:3001/api/v1/tweets',
@@ -56,6 +59,13 @@ componentDidMount() {
   .catch(error => console.log(error))
 }
 
+updateTweet = (tweet) => {
+  const tweetIndex = this.state.tweets.findIndex(x => x.id === tweet.id)
+  const tweets = update(this.state.tweets, {
+    [tweetIndex]: { $set: tweet }
+  })
+  this.setState({tweets: tweets})
+}
 render() {
 
 
@@ -70,7 +80,7 @@ render() {
 
 	{this.state.tweets.map((tweet) => {
   if(this.state.editingTweetId === tweet.id) {
-    return(<TweetForm tweet={tweet} key={tweet.id} />)
+    return(<TweetForm tweet={tweet} key={tweet.id}  updateTweet={this.updateTweet} />)
   } else {
     return (<Tweet tweet={tweet} key={tweet.id} />)
   }
