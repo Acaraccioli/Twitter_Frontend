@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Tweet from './Tweet'
+
 
 
 class TweetsContainer extends Component {
@@ -21,18 +23,21 @@ componentDidMount() {
 }
 
 render() {
+
+
   return (
+
     <div>
+    <button className="newTweetButton">
+  New Idea
+</button>
       {this.state.tweets.map((tweet) => {
-        return(
-          <div className="tile" key={tweet.id} >
-            <h4>{tweet.title}</h4>
-            <p>{tweet.body}</p>
-          </div>
-        )       
-      })}
+  return (<Tweet tweet={tweet} key={tweet.id} />)
+})}
     </div>
+
   );
+
 }
 }
 
